@@ -11,6 +11,12 @@ app.use(bodyParser.json());
 
 // In-memory JSON data store
 let usersData = [];
+try {
+  const usersFileContent = fs.readFileSync(usersFilePath, 'utf8');
+  usersData = JSON.parse(usersFileContent);
+} catch (err) {
+  console.error('Error reading users file:', err);
+}
 
 // Route to get all user data
 app.get('/users', (req, res) => {
@@ -18,11 +24,24 @@ app.get('/users', (req, res) => {
   });
 
   // Route to add a new user
+// app.post('/users', (req, res) => {
+//     const newUser = req.body;
+//     usersData.push(newUser);
+//     res.json({ message: 'User added successfully', user: newUser });
+//   });
 app.post('/users', (req, res) => {
-    const newUser = req.body;
-    usersData.push(newUser);
-    res.json({ message: 'User added successfully', user: newUser });
+  const newUser = req.body;
+  usersData.push(newUser);
+  // usersData = req.body;
+  fs.writeFile(usersFilePath, JSON.stringify(usersData, null, 2), (err) => {
+    if (err) {
+      console.error('Error writing users file:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json({ message: 'User data updated successfully' });
+    }
   });
+});
 
   // Route to update a user
 app.put('/users/:id', (req, res) => {
