@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = 3000;
-const usersFilePath = 'api/assets/users.json';
+const usersFilePath = './assets/users.json';
 
 app.use(cors()); // Enable CORS for all routes
 // Middleware to parse JSON request bodies
