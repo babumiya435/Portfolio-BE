@@ -11,7 +11,7 @@ app.use(cors()); // Enable CORS for all routes
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
 
-// In-memory JSON data store
+// In-memory JSON data store to store usersData
 let usersData = [];
 try {
   const usersFileContent = fs.readFileSync(usersFilePath, 'utf8');
