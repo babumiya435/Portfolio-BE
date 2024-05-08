@@ -12,7 +12,10 @@ app.use(cors()); // Enable CORS for all routes
 app.use(bodyParser.json());
 
 // In-memory JSON data store to store usersData
-let usersData = [];
+let usersData = [{
+  "date" : "2024-05-08",
+  "name": "Sameer Mohammad"
+}];
 try {
   const usersFileContent = fs.readFileSync(usersFilePath, 'utf8');
   usersData = JSON.parse(usersFileContent);
