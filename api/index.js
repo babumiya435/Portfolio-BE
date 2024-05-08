@@ -38,7 +38,7 @@ app.post('/users', (req, res) => {
   fs.writeFile(usersFilePath, JSON.stringify(usersData, null, 2), (err) => {
     if (err) {
       console.error('Error writing users file:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: 'Internal Server Error with fs' });
     } else {
       res.json({ message: 'User data updated successfully' });
     }
