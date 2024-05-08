@@ -4,8 +4,8 @@ const fs = require('fs');
 const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 4000;
-const usersFilePath = './assets/users.json';
+const PORT = 3000;
+const usersFilePath = 'api/assets/users.json';
 
 app.use(cors()); // Enable CORS for all routes
 // Middleware to parse JSON request bodies
@@ -74,3 +74,5 @@ app.delete('/users/:id', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+
+  module.exports = app;
