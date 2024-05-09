@@ -19,7 +19,9 @@ app.get('/users', (req, res) => {
   axios.get(databaseUrl)
     .then(response => {
       // Send the Firebase data as the response
-      res.json(response.data);
+      const dataObject = response.data;
+      const dataArray = Object.values(dataObject); // Convert object to array
+      res.json(dataArray);
     })
     .catch(error => {
       // Send an error response if the request to Firebase fails
